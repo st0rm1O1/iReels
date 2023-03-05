@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="gradient_start">#9575CD</color>
+    <color name="gradient_end">#311B92</color>
+
+    <color name="activity_gradient_start">#37474F</color>
+    <color name="activity_gradient_end">#263238</color>
+
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+
+    <!-- RED -->
+    <color name="red_L">#FF3B30</color>
+    <color name="red_D">#FF453A</color>
+
+    <!-- ORANGE -->
+    <color name="orange_L">#FF9500</color>
+    <color name="orange_D">#FF9F0A</color>
+
+    <!-- YELLOW -->
+    <color name="yellow_L">#FFCC00</color>
+    <color name="yellow_D">#FFD60A</color>
+
+    <!-- GREEN -->
+    <color name="green_L">#34C759</color>
+    <color name="green_D">#32D74B</color>
+
+    <!-- TEAL -->
+    <color name="teal_L">#5AC8FA</color>
+    <color name="teal_D">#64D2FF</color>
+
+    <!-- BLUE -->
+    <color name="blue_L">#0A84FF</color>
+    <color name="blue_D">#0A84FF</color>
+
+    <!-- INDIGO -->
+    <color name="indigo_L">#5856D6</color>
+    <color name="indigo_D">#5E5CE6</color>
+
+    <!-- PURPLE -->
+    <color name="purple_L">#AF52DE</color>
+    <color name="purple_D">#BF5AF2</color>
+
+</resources>

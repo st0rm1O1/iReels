@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="utf-8"?>
+ <RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/activityBG"
+        tools:context=".Activity.Home">
+
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true">
+
+        <ImageView
+            android:id="@+id/activityBackground"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop" />
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            android:src="@drawable/fade_edge_background" />
+    </FrameLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:drawablePadding="4dp"
+            android:fontFamily="@font/bold"
+            android:gravity="center_vertical"
+            android:paddingTop="114dp"
+            android:text="@string/app_name"
+            android:textColor="@color/white"
+            android:textSize="34dp"
+            app:drawableStartCompat="@drawable/ic_instagram"
+            app:drawableTint="@color/white" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:fontFamily="@font/semibold"
+            android:gravity="center_vertical"
+            android:paddingStart="8dp"
+            android:paddingEnd="0dp"
+            android:paddingBottom="38dp"
+            android:text="Instagram Downloader"
+            android:textColor="#DADADA"
+            android:textSize="17dp" />
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="24dp"
+            app:cardBackgroundColor="?attr/cardBG"
+            app:cardCornerRadius="14dp"
+            app:cardElevation=".5dp"
+            app:cardMaxElevation="100dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingStart="16dp"
+                android:paddingTop="8dp"
+                android:paddingEnd="16dp"
+                android:paddingBottom="8dp">
+
+                <ImageView
+                    android:id="@+id/refreshBTN"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:foregroundTint="?attr/txtBG"
+                    app:srcCompat="@drawable/ic_link" />
+
+                <EditText
+                    android:id="@+id/uriETV"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:background="@null"
+                    android:ems="10"
+                    android:fadingEdgeLength="40dp"
+                    android:fontFamily="@font/medium"
+                    android:hint="eg. https://instagram.com/p/..."
+                    android:inputType="textUri"
+                    android:minHeight="48dp"
+                    android:paddingStart="8dp"
+                    android:paddingEnd="8dp"
+                    android:requiresFadingEdge="horizontal"
+                    android:textColor="?attr/txtBG"
+                    android:textColorHint="?attr/paraBG"
+                    android:textSize="17dp" />
+
+                <ImageView
+                    android:id="@+id/clearBTN"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:foregroundTint="?attr/txtBG"
+                    android:visibility="gone"
+                    app:srcCompat="@drawable/ic_close"
+                    tools:visibility="visible" />
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="24dp"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/pasteBTN"
+                style="@style/Widget.Material3.Button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="4dp"
+                android:layout_weight="1"
+                android:backgroundTint="#D1C4E9"
+                android:fontFamily="@font/medium"
+                android:insetTop="0dp"
+                android:insetBottom="0dp"
+                android:maxLines="1"
+                android:text="Paste"
+                android:textColor="#311B92"
+                android:textSize="17dp"
+                app:cornerRadius="7dp"
+                app:icon="@drawable/ic_paste"
+                app:iconGravity="textEnd"
+                app:iconSize="24dp"
+                app:iconTint="#4A148C"
+                app:rippleColor="#EDE7F6" />
+
+            <Button
+                android:id="@+id/downloadBTN"
+                style="@style/Widget.Material3.Button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:layout_weight="1"
+                android:backgroundTint="#F8BBD0"
+                android:fontFamily="@font/medium"
+                android:insetTop="0dp"
+                android:insetBottom="0dp"
+                android:maxLines="1"
+                android:text="Download"
+                android:textColor="#E91E63"
+                android:textSize="17dp"
+                app:cornerRadius="7dp"
+                app:icon="@drawable/ic_download"
+                app:iconGravity="textEnd"
+                app:iconSize="24dp"
+                app:iconTint="#E91E63"
+                app:rippleColor="#FCE4EC" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+    </RelativeLayout>

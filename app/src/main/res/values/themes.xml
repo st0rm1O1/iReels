@@ -1,0 +1,34 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <style name="Theme.IReels" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+
+        <item name="activityBG">#161616</item>
+        <item name="cardBG">#FFF</item>
+        <item name="txtBG">#0B0B0B</item>
+        <item name="subBG">#666</item>
+        <item name="paraBG">#86868A</item>
+        <item name="toastBG">#FAFAFA</item>
+
+        <item name="android:statusBarColor">@color/black</item>
+        <item name="android:navigationBarColor">@color/black</item>
+
+        <item name="android:windowLightStatusBar">true</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:includeFontPadding">false</item>
+        <item name="android:letterSpacing">-0.02</item>
+        <item name="android:autofilledHighlight" tools:targetApi="o">@android:color/transparent</item>
+
+        <item name="android:textSelectHandle">@drawable/ui_handler</item>
+        <item name="android:textCursorDrawable">@drawable/ui_cursor</item>
+        <item name="android:textColorHighlight">#90CAF9</item>
+        <item name="android:textColorLink">#43A0FF</item>
+        <item name="colorControlActivated">@color/blue_D</item>
+        <item name="colorControlHighlight">#E8E8E8</item>
+
+    </style>
+
+    <style name="RadioButton" parent="Theme.MaterialComponents">
+        <item name="colorControlActivated">@color/blue_D</item>
+    </style>
+
+</resources>

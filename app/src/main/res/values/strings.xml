@@ -1,0 +1,33 @@
+<resources>
+    <string name="app_name">iReels</string>
+    <string name="date_format">yyyyMMddHHmm-</string>
+    <string-array name="BG">
+        <item>https://media3.giphy.com/media/TM8Fu4TrgkNSmXh5cw/giphy.gif</item>
+        <item>https://media3.giphy.com/media/hFhygTRHt4jvGQo52q/giphy.gif</item>
+        <item>https://media0.giphy.com/media/OK5LK5zLFfdm/giphy.gif</item>
+        <item>https://media0.giphy.com/media/U3qYN8S0j3bpK/giphy.gif</item>
+        <item>https://media1.giphy.com/media/fwo7bzEVxbYS4eSNVd/giphy.gif</item>
+        <item>https://media2.giphy.com/media/VwkOGUM4gAkrDrFw2L/giphy.gif</item>
+        <item>https://media2.giphy.com/media/Tk7OGjSqfRSlDbtu20/giphy.gif</item>
+        <item>https://media1.giphy.com/media/xUOwGcu6wd0cXBj5n2/giphy.gif</item>
+        <item>https://media1.giphy.com/media/3o7aD9y2CKtGHRfhOE/giphy.gif</item>
+        <item>https://media1.giphy.com/media/Eqz8ZFUScPHH2/giphy.gif</item>
+        <item>https://media4.giphy.com/media/iqKCbuETi3dOAg9xWB/giphy.gif</item>
+        <item>https://media1.giphy.com/media/p71BYIPogqBPy/giphy.gif</item>
+        <item>https://media3.giphy.com/media/5ZYA31R5OP6JdmVP3f/giphy.gif</item>
+        <item>https://media2.giphy.com/media/MVgokUYqRcuhY3z5Hy/giphy.gif</item>
+        <item>https://media1.giphy.com/media/tGrq4uzKIJaLuI3uz7/giphy.gif</item>
+        <item>https://media4.giphy.com/media/axcZ1wkjhEo8Ng1cCy/giphy.gif</item>
+        <item>https://media.tenor.com/PSZfGznBSP4AAAAd/aesthetic-skater-skater.gif</item>
+        <item>https://media2.giphy.com/media/3oxRmD9a5pLTOOLigM/giphy.gif</item>
+        <item>https://media.tenor.com/G2JRi8QALO8AAAAC/rain-raining.gif</item>
+        <item>https://media.tenor.com/sQdUQEtPEnUAAAAC/spider-man-electro.gif</item>
+        <item>https://media.tenor.com/84eXzUXFTJ8AAAAC/electro-fighting.gif</item>
+        <item>https://media.tenor.com/m70Im2ReGtsAAAAd/andrew-spider-man-spiderman-facing.gif</item>
+        <item>https://media.tenor.com/Q3JQYAWRsIgAAAAC/tron-legacy-tron.gif</item>
+        <item>https://media.tenor.com/BkvJ92bjqrIAAAAC/tron-legacy.gif</item>
+        <item>https://media.tenor.com/nSvZcYTervsAAAAC/suit-off-bruce-wayne.gif</item>
+        <item>https://media3.giphy.com/media/uuIxABcAsA5FnzfASl/giphy.gif</item>
+        <item>https://media1.giphy.com/media/4FJ2zEk8WaBHkVyHem/giphy.gif</item>
+    </string-array>
+</resources>

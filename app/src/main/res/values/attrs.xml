@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="ALPHA">
+
+        <attr name="activityBG" format="color" />
+        <attr name="cardBG" format="color" />
+
+        <attr name="txtBG" format="color" />
+        <attr name="lineBG" format="color" />
+        <attr name="subBG" format="color" />
+        <attr name="paraBG" format="color" />
+        <attr name="toastBG" format="color" />
+
+        <attr name="actionBarBG" format="color" />
+        <attr name="navBarBG" format="color" />
+
+    </declare-styleable>
+</resources>
