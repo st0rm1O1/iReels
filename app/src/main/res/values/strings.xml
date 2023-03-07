@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">iReels</string>
     <string name="date_format">yyyyMMddHHmm-</string>
+    <string name="progressTitle">Downloading...</string>
     <string-array name="BG">
         <item>https://media3.giphy.com/media/TM8Fu4TrgkNSmXh5cw/giphy.gif</item>
         <item>https://media3.giphy.com/media/hFhygTRHt4jvGQo52q/giphy.gif</item>

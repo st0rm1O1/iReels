@@ -14,12 +14,15 @@ android {
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        renderscriptTargetApi 21
+        renderscriptSupportModeEnabled true
+
     }
 
     buildTypes {
         release {
-            minifyEnabled false
-            shrinkResources false
+            minifyEnabled true
+            shrinkResources true
             proguardFiles getDefaultProguardFile(
                     'proguard-android-optimize.txt'),
                     'proguard-rules.pro'
@@ -47,5 +50,8 @@ dependencies {
 
 //    ASYNC
     implementation 'com.loopj.android:android-async-http:1.4.11'
+
+//    DIALOG
+    implementation "com.kongzue.dialogx:DialogX:0.0.47"
 
 }

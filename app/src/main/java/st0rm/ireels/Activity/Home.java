@@ -1,9 +1,11 @@
 package st0rm.ireels.Activity;
 
 import android.app.DownloadManager;
-import android.app.ProgressDialog;
+import android.content.BroadcastReceiver;
 import android.content.ClipboardManager;
 import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
@@ -21,6 +23,8 @@ import android.widget.ImageView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.bumptech.glide.Glide;
+import com.kongzue.dialogx.DialogX;
+import com.kongzue.dialogx.dialogs.WaitDialog;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 
@@ -55,16 +59,13 @@ public class Home extends AppCompatActivity {
     private ClipboardManager clipBoardManager;
 
 
-//    PROGRESS DIALOG
-    private ProgressDialog progressDialog;
-
-
 //    URL LIST
     Map<String, String> post_uri_list = new HashMap<>();
 
 
 //    DOWNLOAD MANAGER
     private DownloadManager downloadManager;
+    private long downloadID;
 
 
 //    ARRAY
@@ -78,6 +79,11 @@ public class Home extends AppCompatActivity {
         initGlide();
     }
 
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        unregisterReceiver(onDownloadComplete);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -89,7 +95,7 @@ public class Home extends AppCompatActivity {
         getWindow().getDecorView().setSystemUiVisibility(0);
 
         if (getIntent().getClipData() != null)
-            getURI(getIntent().getClipData().toString());
+            getURI(getIntent().getClipData().toString(), true);
 
 
         refreshBTN.setOnClickListener(v -> initGlide());
@@ -98,10 +104,7 @@ public class Home extends AppCompatActivity {
 
         pasteBTN.setOnClickListener(v -> uriETV.setText(getClipBoardText()));
 
-        downloadBTN.setOnClickListener(v -> {
-            if (isInternetAvailable())
-                getURI(uriETV.getText().toString());
-        });
+        downloadBTN.setOnClickListener(v -> getURI(uriETV.getText().toString(), false));
 
 
         uriETV.addTextChangedListener(new TextWatcher() {
@@ -119,6 +122,9 @@ public class Home extends AppCompatActivity {
             public void afterTextChanged(Editable editable) {}
 
         });
+
+
+        registerReceiver(onDownloadComplete,new IntentFilter(DownloadManager.ACTION_DOWNLOAD_COMPLETE));
 
 
     }
@@ -147,12 +153,12 @@ public class Home extends AppCompatActivity {
                 request.setDescription("Downloading...");
                 request.setVisibleInDownloadsUi(true);
                 request.setDestinationInExternalPublicDir(Environment.DIRECTORY_DOWNLOADS, fileName);
-                downloadManager.enqueue(request);
+                downloadID = downloadManager.enqueue(request);
 
             }
 
             Roasty.showToast(this, -1, "Download Started!");
-            progressDialog.dismiss();
+            WaitDialog.dismiss();
             post_uri_list.clear();
 
         }
@@ -161,8 +167,23 @@ public class Home extends AppCompatActivity {
 
 
 
+    private final BroadcastReceiver onDownloadComplete = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            long id = intent.getLongExtra(DownloadManager.EXTRA_DOWNLOAD_ID, -1);
 
-    private void getURI(String text) {
+            if (downloadID == id) {
+                Roasty.showToast(Home.this, -1, "Download Completed!" + "\n" + downloadManager.getUriForDownloadedFile(downloadID));
+                WaitDialog.dismiss();
+            }
+
+        }
+    };
+
+
+
+
+    private void getURI(String text, boolean isCliped) {
 
         if (text.isEmpty())
             Roasty.showToast(this, R.drawable.ic_warning, "NO LINK FOUND!  🐾");
@@ -171,8 +192,15 @@ public class Home extends AppCompatActivity {
 
             if (text.contains("instagram")) {
 
-                progressDialog.show();
-                new Handler().postDelayed(() -> getURIList(text), 2000);
+//                ClipData { text/plain {T:https://www.instagram.com/reel/CpZngIbjYeO/?igshid=MDJmNzVkMjY=} }
+//                ASCII (104 = 'h') (125 = '}')
+                if (isCliped)
+                    text = text.substring(text.indexOf(104), text.indexOf(125));
+
+                WaitDialog.show(getResources().getString(R.string.progressTitle)).setCancelable(false);
+                String finalText = text;
+                Log.d("HALO", finalText);
+                new Handler().post(() -> getURIList(finalText));
 
             } else Roasty.showToast(this, R.drawable.ic_warning, "Make sure you've copied the link from Instagram.");
 
@@ -185,7 +213,7 @@ public class Home extends AppCompatActivity {
     private void getURIList(String stringData) {
 
 //        ArrayList<String> post_uri_list = new ArrayList<>();
-        progressDialog.show();
+        WaitDialog.show(getResources().getString(R.string.progressTitle)).setCancelable(false);
 
         if (stringData.matches("https://www.instagram.com/(.*)")) {
 
@@ -195,8 +223,8 @@ public class Home extends AppCompatActivity {
             if (isInternetAvailable()) {
 
                 AsyncHttpClient client = new AsyncHttpClient();
-                client.addHeader("Accept", "application/json");
-                client.addHeader("Content-Type", "application/json;charset=UTF-8");
+//                client.addHeader("Accept", "application/json");
+//                client.addHeader("Content-Type", "application/json;charset=UTF-8");
                 client.addHeader("user-agent", "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/98.0.4758.102 Safari/537.36");
                 client.addHeader("x-requested-with", "XMLHttpRequest");
                 client.get(string + "?__a=1&__d=dis", null, new AsyncHttpResponseHandler() {
@@ -266,6 +294,7 @@ public class Home extends AppCompatActivity {
                         } catch (JSONException e) {
                             e.printStackTrace();
                             Roasty.showToast(Home.this, R.drawable.ic_warning, statusCode + " - JSON Exception");
+                            WaitDialog.dismiss();
                         }
 
                     }
@@ -273,10 +302,14 @@ public class Home extends AppCompatActivity {
                     @Override
                     public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
                         Roasty.showToast(Home.this, R.drawable.ic_warning, statusCode + " - " + error);
+                        WaitDialog.dismiss();
                     }
                 });
 
-            } else Roasty.showToast(Home.this, R.drawable.ic_warning, "NO INTERNET CONNECTION!");
+            } else {
+                Roasty.showToast(Home.this, R.drawable.ic_warning, "NO INTERNET CONNECTION!");
+                WaitDialog.dismiss();
+            }
         }
 
     }
@@ -303,13 +336,15 @@ public class Home extends AppCompatActivity {
         activityBackground = findViewById(R.id.activityBackground);
         arrayBG = getResources().getStringArray(R.array.BG);
 
+
 //        CLIPBOARD MANAGER
         clipBoardManager = (ClipboardManager) getSystemService(CLIPBOARD_SERVICE);
 
+
 //        PROGRESS DIALOG
-        progressDialog = new ProgressDialog(Home.this);
-        progressDialog.setCancelable(false);
-        progressDialog.setMessage("Getting POST For YOUUU..");
+        DialogX.init(this);
+        DialogX.globalTheme = DialogX.THEME.AUTO;
+
 
 //        DOWNLOAD MANAGER
         downloadManager = (DownloadManager) getSystemService(DOWNLOAD_SERVICE);
